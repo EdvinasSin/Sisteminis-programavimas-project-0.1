@@ -1,16 +1,19 @@
 ﻿#include "My_Lyb.h"
+#include "Read_Txt.h"
 
 int minimum(int a, int b) { return a < b ? a : b;}
+char Student::InputMethod = 't';
+char Student::OutputMethod = 'm';
 
-// Studento klasės konstruktorius, leidžiantis pasirinkti duomenų įvedimo būdą
+//Student clases konstruktorius naudojamas atsitiktiniam studentu generavimui
 
-Student::Student(char inputMethod) {
+Student::Student(){
 	
-
+	
 	mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
 	int_distribution dist(0, 9);
-
-	if (inputMethod == 'r') {
+	
+	if (InputMethod == 'r') {
 		string vardai[10] = { "Nojus", "Linas", "Matas", "Lukas", "Jonas", "Erika", "Laura", "Greta", "Diana", "Inesa" };
 		string pavardes_m[10] = { "Kazlauskaite", "Jankauskaite", "Stankeviciute", "Petrauskaite", "Vasiliauskaite", "Butkute", "Pociute", "Lukoseviciute", "Balciunaite", "Kavaliauskaite" };
 		string pavardes_v[10] = { "Kazlauskas", "Jankauskas", "Stankevicius", "Petrauskas", "Vasiliauskas", "Butkus", "Pocius", "Lukosevicius", "Balciunas", "Kavaliauskas" };
@@ -28,22 +31,25 @@ Student::Student(char inputMethod) {
 			HW.push_back(dist(mt) + 1);
 		}
 		Exam = dist(mt) + 1;
-		Rezult('v');
+		Rezult(OutputMethod);
 	}
-	else if (inputMethod == 'm') {
-		cin >> *this;  
+	else if (InputMethod == 'm') {
+		cin >> *this;
+		Rezult(OutputMethod);
 	}
+	else {};
 
 	
 
 }
-	// Studento klasės konstruktorius su rankiniu duomenų įvedimu
+
+	// Priskirimo konstruktorius
 	Student::Student(string N, string S, vector<int> H, int E) {
 		Name = N;
 		Surname = S;
 		HW = H;
 		Exam = E;
-		Rezult('v');
+		Rezult(OutputMethod);
 	}
 
   // Kopijavimo konstruktorius
@@ -54,7 +60,7 @@ Student::Student(char inputMethod) {
 		Exam = A.Exam;
 		Rez = A.Rez;
 	}
-    // Kopijavimo operatorius
+    // Kopijavimo/priskirimo operatorius
 	Student& Student::operator = (const Student& A) {
 		if (this == &A) return *this;
 		Name = A.Name;
@@ -64,7 +70,7 @@ Student::Student(char inputMethod) {
 		Rez = A.Rez;
 		return *this;
 	}
-	// Dekonstruktorius
+	// Destruktorius
 	Student::~Student() {
 		Name.clear();
 		Surname.clear();
@@ -88,24 +94,18 @@ Student::Student(char inputMethod) {
 
 	// Rezultato skaičiavimo funkcija
 	void Student::Rezult(char pas) {
-		(pas == 'v') ? Rez = 0.4 * Vid() + 0.6 * Exam : Rez = 0.4 * Med() + 0.6 * Exam;
+		(pas == OutputMethod) ? Rez = 0.4 * Vid() + 0.6 * Exam : Rez = 0.4 * Med() + 0.6 * Exam;
 	}
 
-	// << operatoriaus perkrovimo funkcija, skirta išvesti Studento objektą į srautą
+	// Operatoriaus << perkrovimas ,studento duom. isvedimui
 	std::ostream& operator<<(std::ostream& out, const Student& A) {
-		cout << std::setw(16) << std::left << A.Name << std::setw(16) << std::left << A.Surname << " | ";
-
-		for (auto& i : A.HW) {
-			cout << std::setw(3) << i << " | ";
-		}
-
-		cout << setw(5) << A.Exam << " | ";
-		cout << std::fixed << std::setprecision(2) << "Rezultatas = " << A.Rez << endl;
+		cout << std::setw(16) << std::left << A.Name << std::setw(16) << std::left << A.Surname;
+		cout << std::fixed << std::setprecision(2) << A.Rez << endl;
 
 		return out;
 	}
 
-	// >> operatoriaus perkrovimo funkcija, skirta įvesti duomenis į Studento objektą iš srauto
+	// Operatoriaus >> perkrovimas ,studento duom. ivedimui
 	std::istream& operator>>(std::istream& in, Student& a) {
 		int n;
 		cout << "Iveskite Varda: ";
@@ -114,6 +114,7 @@ Student::Student(char inputMethod) {
 		in >> a.Surname;
 		cout << "Iveskite namu darbu kieki: ";
 		in >> n;
+		a.HW.clear();
 		for (int i = 0; i < n; i++) {
 			cout << "Koks pazymis buvo uz " << i+1 << " namu darba: ";
 			int k;
@@ -121,6 +122,11 @@ Student::Student(char inputMethod) {
 		}
 		cout << "Koks buvo egzamino rezultatas: ";
 		in >> a.Exam;
-		a.Rezult('v');
+		
 		return in;
 	}
+
+
+
+
+	

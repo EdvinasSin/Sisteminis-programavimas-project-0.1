@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Read_Txt.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,6 +10,10 @@
 #include <chrono>
 #include <random>
 #include <iomanip>
+#include <fstream>
+#include <string>
+
+
 
 using std::cout;
 using std::cin;
@@ -28,18 +34,36 @@ class Student {
 	int Exam;
 	float Rez;
 public:
-	Student(char inputMethod);
+	
+	static char InputMethod , OutputMethod;
+	
+	//Konstruktoriai,destruktoriai
+	Student();
 	Student(string N, string S , vector <int> H ,int E); 
 	Student(const Student &A);
 	Student& operator = (const Student& A);
 	~Student();
+	
+	//Getteris
+	string GetName() const { return Name; };
+
+	//Rezultato skaicevimo funkcijos
 	float Vid();
 	float Med();
 	void Rezult(char pas);
+
+	//Txt file skaitykle
+	void ReadFromFile(std::istream& in, std::vector<Student>& Grupe);
+	
+	//Setteriai
 	inline void SetName(string N) { Name = N; };
 	inline void SetSurname(string S) { Surname = S; };
 	inline void SetHW(vector <int> Vec) { HW = Vec; };
 	inline void SetExam(int n) { Exam = n; };
+
+	//Operatoriu '<<' ir '>>' perkrovimas
 	friend std::ostream& operator<<(std::ostream& out, const Student& A);
 	friend std::istream& operator>>(std::istream& in ,Student& a);
+	
+	
 };
