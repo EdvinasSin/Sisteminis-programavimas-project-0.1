@@ -130,8 +130,10 @@
     <ClCompile Include="My_lyb.cpp" />
     <ClCompile Include="Porjektas.cpp" />
     <ClCompile Include="Read_Txt.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Read_Txt.h" />
     <ClInclude Include="My_Lyb.h" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Read_Txt.h"
+#include "Timer.h"
 
 #include <iostream>
 #include <string>
@@ -46,6 +47,7 @@ public:
 	
 	//Getteris
 	string GetName() const { return Name; };
+	float GetRez() const { return Rez; };
 
 	//Rezultato skaicevimo funkcijos
 	float Vid();

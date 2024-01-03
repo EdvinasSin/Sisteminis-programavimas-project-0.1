@@ -40,18 +40,20 @@ int main()
             cout << "Iveskite failo pavadinima: ";
             string FileName;
             cin >> FileName;
+            Timer t;
             std::ifstream inputFile(FileName);
-
+            cout << "Failo atverymas uztruko : " << t.elapsed() << "s\n";
             //Tikrinama ar failas atidarytas sekmingai
             if (!inputFile.is_open()) {
                 throw std::ios_base::failure("Nepavyko atidaryti failo");
             }
 
             //Duomenu nuskaitymas
+            t.reset();
             Student Laikinas;
             Laikinas.ReadFromFile(inputFile, Grupe);
             inputFile.close();
-
+            cout << "Duomenu nuskaitymas is failu uztruko : " << t.elapsed() << "s\n";
             break;
         }
         default: {
@@ -59,20 +61,48 @@ int main()
             return 1;
         }
         }
-        //Studentu rusiavimas vardu
+        //Studentu rusiavimas pagal rezultata
         sort(Grupe.begin(), Grupe.end(), [](const Student& a, const Student& b) {
-            return a.GetName() < b.GetName();
+            return a.GetRez() > b.GetRez();
+            });
+         
+        
+
+        vector<Student> geri;
+        vector<Student> blogi;
+        
+        Timer t;
+        
+        
+        auto partition_iter = std::partition(Grupe.begin(), Grupe.end(), [](const Student& a) {
+            return a.GetRez() > 5.0;
             });
 
-        //Spausdinamas rezultato antraste
-        if (outputMethod == 'v') cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Vid.)" << endl;
-        else cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Med.)" << endl;
-        cout << setw(48) << std::setfill('-') << "-" << std::setfill(' ') << endl;
+       
+        blogi.insert(blogi.end(), partition_iter, Grupe.end());
+        geri.insert(geri.end(), Grupe.begin(), partition_iter);
 
-        //Spausdinami studentai ir ju rezultatai
-        for (auto& duom : Grupe) cout << duom;
+        
+        Grupe.clear();
 
-        system("pause");
+         cout << "Studentu rusiavimas i dvi kategorijas uztruko : " << t.elapsed() << "s\n";       
+
+        t.reset();
+
+        //Rezultatu spausdinimas i du skirtingus failus
+        std::ofstream out_f("Blogi_rez.txt");
+        for (const auto& duom : blogi) {
+            out_f << duom << endl;  
+        }
+        out_f.close();
+
+        std::ofstream out_f2("Geri_rez.txt");
+        for (const auto& duom : geri) {
+            out_f2 << duom << endl;  
+        }
+        out_f2.close();
+        
+        cout << "Surusiuotu studentu isvedimas i faila uztruko : " << t.elapsed() << "s\n";
 
         return 0;
     }
@@ -94,3 +124,11 @@ int main()
         return 1;
         }
 }
+
+//Spausdinamas rezultato antraste
+//if (outputMethod == 'v') cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Vid.)" << endl;
+// else cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Med.)" << endl;
+ //cout << setw(48) << std::setfill('-') << "-" << std::setfill(' ') << endl;
+
+ //Spausdinami studentai ir ju rezultatai
+ //for (auto& duom : Grupe) cout << duom;
