@@ -68,41 +68,34 @@ int main()
             return a.GetRez() > b.GetRez();
             });
          
-        
-
-        vector<Student> geri;
         vector<Student> blogi;
         
         Timer t;
-        
         
         auto partition_iter = std::partition(Grupe.begin(), Grupe.end(), [](const Student& a) {
             return a.GetRez() > 5.0;
             });
 
-       
         blogi.insert(blogi.end(), partition_iter, Grupe.end());
-        geri.insert(geri.end(), Grupe.begin(), partition_iter);
 
-        
-        Grupe.clear();
+        Grupe.erase(partition_iter, Grupe.end());
 
-         cout << "Studentu rusiavimas i dvi kategorijas uztruko : " << t.elapsed() << "s\n";       
+        cout << "Studentu rusiavimas i dvi kategorijas uztruko : " << t.elapsed() << "s\n";
 
         t.reset();
 
-        //Rezultatu spausdinimas i du skirtingus failus
-        std::ofstream out_f("Blogi_rez.txt");
+        // Rezultatu spausdinimas i faila
+        std::ofstream out_f_blogi("Blogi_rez.txt");
         for (const auto& duom : blogi) {
-            out_f << duom << endl;  
+            out_f_blogi << duom << endl;
         }
-        out_f.close();
+        out_f_blogi.close();
 
-        std::ofstream out_f2("Geri_rez.txt");
-        for (const auto& duom : geri) {
-            out_f2 << duom << endl;  
+        std::ofstream out_f_geri("Geri_rez.txt");
+        for (const auto& duom : Grupe) {
+            out_f_geri << duom << endl;
         }
-        out_f2.close();
+        out_f_geri.close();
         
         cout << "Surusiuotu studentu isvedimas i faila uztruko : " << t.elapsed() << "s\n";
 
@@ -132,4 +125,5 @@ int main()
 // else cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Med.)" << endl;
  //cout << setw(48) << std::setfill('-') << "-" << std::setfill(' ') << endl;
 
- 
+ //Spausdinami studentai ir ju rezultatai
+ //for (auto& duom : Grupe) cout << duom;
