@@ -40,16 +40,18 @@ int main()
             cout << "Iveskite failo pavadinima: ";
             string FileName;
             cin >> FileName;
-            Timer t;
+          
             std::ifstream inputFile(FileName);
-            cout << "Failo atverymas uztruko : " << t.elapsed() << "s\n";
-            //Tikrinama ar failas atidarytas sekmingai
+
+           // cout << "Failo atverymas uztruko : " << t.elapsed() << "s\n";
+           
+           //Tikrinama ar failas atidarytas sekmingai
             if (!inputFile.is_open()) {
                 throw std::ios_base::failure("Nepavyko atidaryti failo");
             }
 
             //Duomenu nuskaitymas
-            t.reset();
+            Timer t;
             Student Laikinas;
             Laikinas.ReadFromFile(inputFile, Grupe);
             inputFile.close();
@@ -130,5 +132,4 @@ int main()
 // else cout << setw(16) << std::left << "Vardas" << setw(12) << std::left << "Pavarde" << setw(20) << std::right << "Galutinis (Med.)" << endl;
  //cout << setw(48) << std::setfill('-') << "-" << std::setfill(' ') << endl;
 
- //Spausdinami studentai ir ju rezultatai
- //for (auto& duom : Grupe) cout << duom;
+ 
