@@ -1,0 +1,76 @@
+Vector:
+
+10K;
+
+Failo atverymas uztruko : 5.75e-05s
+Duomenu nuskaitymas is failu uztruko : 0.0426365s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.620899s
+Surusiuotu studentu isvedimas i faila uztruko : 0.0528288s
+
+100K after using partition;
+
+Duomenu nuskaitymas is failu uztruko : 0.04308s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.0006725s
+Surusiuotu studentu isvedimas i faila uztruko : 0.052922s
+
+100K;
+
+Failo atverymas uztruko : 9.12e-05s
+Duomenu nuskaitymas is failu uztruko : 0.540695s
+Studentu rusiavimas i dvi kategorijas uztruko : 65.5005s
+Surusiuotu studentu isvedimas i faila uztruko : 0.533421s
+
+100K after using partition;
+
+Failo atverymas uztruko : 8.83e-05s
+Duomenu nuskaitymas is failu uztruko : 0.532948s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.0116027s
+Surusiuotu studentu isvedimas i faila uztruko : 0.525559s
+
+1M;
+
+Failo atverymas uztruko : 7.76e-05s
+Duomenu nuskaitymas is failu uztruko : 2.61418s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.11405s
+Surusiuotu studentu isvedimas i faila uztruko : 5.42008s
+
+List : 
+
+10K;
+
+Duomenu nuskaitymas is failu uztruko : 0.057428s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.010345s
+Surusiuotu studentu isvedimas i faila uztruko : 0.0541808s
+
+100K;
+
+Duomenu nuskaitymas is failu uztruko : 0.710323s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.248221s
+Surusiuotu studentu isvedimas i faila uztruko : 0.533483s
+
+1M;
+
+Duomenu nuskaitymas is failu uztruko : 3.16655s
+Studentu rusiavimas i dvi kategorijas uztruko : 1.5744s
+Surusiuotu studentu isvedimas i faila uztruko : 5.32969s
+
+Deque : 
+
+10K
+
+Duomenu nuskaitymas is failu uztruko : 0.0492789s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.0046925s
+Surusiuotu studentu isvedimas i faila uztruko : 0.0535696s
+
+100K
+
+Duomenu nuskaitymas is failu uztruko : 0.60709s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.071943s
+Surusiuotu studentu isvedimas i faila uztruko : 0.530946s
+
+1M
+
+Duomenu nuskaitymas is failu uztruko : 2.92572s
+Studentu rusiavimas i dvi kategorijas uztruko : 0.551976s
+Surusiuotu studentu isvedimas i faila uztruko : 5.32273s
+

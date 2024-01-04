@@ -99,8 +99,8 @@ Student::Student(){
 
 	// Operatoriaus << perkrovimas ,studento duom. isvedimui
 	std::ostream& operator<<(std::ostream& out, const Student& A) {
-		cout << std::setw(16) << std::left << A.Name << std::setw(16) << std::left << A.Surname;
-		cout << std::fixed << std::setprecision(2) << A.Rez << endl;
+		out << std::setw(16) << std::left << A.Name << std::setw(16) << std::left << A.Surname;
+		out << std::fixed << std::setprecision(2) << A.Rez << endl;
 
 		return out;
 	}

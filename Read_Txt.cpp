@@ -9,7 +9,7 @@ void Student::ReadFromFile(std::istream& in, std::vector<Student>& Grupe)
 	//Gaunamos antrastes
 	std::string header1, header2;
 	std::getline(in, header1);
-	std::getline(in, header2);
+	
 
 	std::string line;
 	//Duomenu nuskatymas eilutemis:
@@ -21,15 +21,15 @@ void Student::ReadFromFile(std::istream& in, std::vector<Student>& Grupe)
 
 		HW.clear();
 
-		for (int i = 0; i < 5; ++i) {
-			int grade;
-
-			if (!(iss >> grade)) break;
+		int grade;
+		while (iss >> grade) {
 			HW.push_back(grade);
+			
 		}
+		Exam = HW.back();
+		HW.pop_back();
 
-
-		if (!(iss >> Exam)) break;
+	
 
 
 

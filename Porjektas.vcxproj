@@ -132,6 +132,7 @@
     <ClCompile Include="Read_Txt.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Read_Txt.h" />
     <ClInclude Include="My_Lyb.h" />
   </ItemGroup>
