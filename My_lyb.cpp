@@ -3,7 +3,7 @@
 
 int minimum(int a, int b) { return a < b ? a : b;}
 char Student::InputMethod = 't';
-char Student::OutputMethod = 'm';
+char Student::OutputMethod = 'v';
 
 //Student clases konstruktorius naudojamas atsitiktiniam studentu generavimui
 
@@ -27,11 +27,17 @@ Student::Student(){
 			Surname = pavardes_m[dist(mt)];
 			break;
 		};
-		for (int i = 0; i < 5; i++) {
+		
+
+		
+		for (int i = 0; i < 4; i++) {
+			
 			HW.push_back(dist(mt) + 1);
 		}
+
 		Exam = dist(mt) + 1;
 		Rezult(OutputMethod);
+		
 	}
 	else if (InputMethod == 'm') {
 		cin >> *this;
@@ -94,7 +100,12 @@ Student::Student(){
 
 	// Rezultato skaičiavimo funkcija
 	void Student::Rezult(char pas) {
-		(pas == OutputMethod) ? Rez = 0.4 * Vid() + 0.6 * Exam : Rez = 0.4 * Med() + 0.6 * Exam;
+		if ('v' == OutputMethod) {
+			Rez = 0.4 * Vid() + 0.6 * Exam;
+		}
+		else {
+			Rez = 0.4 * Med() + 0.6 * Exam;
+		}
 	}
 
 	// Operatoriaus << perkrovimas ,studento duom. isvedimui

@@ -34,6 +34,7 @@ class Student {
 	vector <int> HW;
 	int Exam;
 	float Rez;
+
 public:
 	
 	static char InputMethod , OutputMethod;
@@ -62,6 +63,7 @@ public:
 	inline void SetSurname(string S) { Surname = S; };
 	inline void SetHW(vector <int> Vec) { HW = Vec; };
 	inline void SetExam(int n) { Exam = n; };
+	
 
 	//Operatoriu '<<' ir '>>' perkrovimas
 	friend std::ostream& operator<<(std::ostream& out, const Student& A);
