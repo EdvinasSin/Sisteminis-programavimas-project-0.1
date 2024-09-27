@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Read_Txt.h"
+#include "Timer.h"
 
 #include <iostream>
 #include <string>
@@ -33,6 +34,7 @@ class Student {
 	vector <int> HW;
 	int Exam;
 	float Rez;
+
 public:
 	
 	static char InputMethod , OutputMethod;
@@ -46,6 +48,7 @@ public:
 	
 	//Getteris
 	string GetName() const { return Name; };
+	float GetRez() const { return Rez; };
 
 	//Rezultato skaicevimo funkcijos
 	float Vid();
@@ -60,6 +63,7 @@ public:
 	inline void SetSurname(string S) { Surname = S; };
 	inline void SetHW(vector <int> Vec) { HW = Vec; };
 	inline void SetExam(int n) { Exam = n; };
+	
 
 	//Operatoriu '<<' ir '>>' perkrovimas
 	friend std::ostream& operator<<(std::ostream& out, const Student& A);
